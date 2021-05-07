@@ -84,5 +84,6 @@ class WatchlistStep(GenericStep):
         """
             % str_values
         )
+        self.logger.info(query)
         self.users_db_connection.session.execute(query)
         self.users_db_connection.session.commit()
