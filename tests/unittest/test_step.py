@@ -56,12 +56,12 @@ class TestExecute:
         WHERE ST_DWITHIN(
             ST_SetSRID(ST_MakePoint(positions.ra, positions.dec), 4035) ,
             ST_SetSRID(ST_MakePoint(watchlist_target.ra, watchlist_target.dec), 4035),
-            degrees_to_meters(watchlist_target.sr), true);
+            degrees_to_meters(watchlist_target.radius), true);
         """
         )
         step.users_db_connection.session.execute.mock_calls[1] == mock.call(
             """
-        INSERT INTO watchlist_match (target, object_id, candid, date) VALUES (1, 'oid1', 1234, 'date'),
+        INSERT INTO watchlist_match (target_id, object_id, candid, date) VALUES (1, 'oid1', 1234, 'date'),
 (2, 'oid2', 5678, 'date')
         """
         )

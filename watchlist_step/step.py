@@ -63,7 +63,7 @@ class WatchlistStep(GenericStep):
         WHERE ST_DWITHIN(
             ST_SetSRID(ST_MakePoint(positions.ra, positions.dec), 4035) ,
             ST_SetSRID(ST_MakePoint(watchlist_target.ra, watchlist_target.dec), 4035),
-            degrees_to_meters(watchlist_target.sr), true);
+            degrees_to_meters(watchlist_target.radius), true);
         """
             % str_values
         )
@@ -79,7 +79,7 @@ class WatchlistStep(GenericStep):
         )
         query = (
             """
-        INSERT INTO watchlist_match (target, object_id, candid, date) VALUES %s;
+        INSERT INTO watchlist_match (target_id, object_id, candid, date) VALUES %s;
         """
             % str_values
         )
