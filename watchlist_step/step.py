@@ -38,7 +38,6 @@ class WatchlistStep(GenericStep):
         coordinates = self.get_coordinates(candids)
         matches = self.match_user_targets(coordinates)
         if len(matches):
-            self.logger.info("Inserting matches")
             self.insert_matches(matches)
 
     def get_coordinates(self, candids: List[int]) -> List[Tuple]:
@@ -84,6 +83,5 @@ class WatchlistStep(GenericStep):
         """
             % str_values
         )
-        self.logger.info(query)
         self.users_db_connection.session.execute(query)
         self.users_db_connection.session.commit()
