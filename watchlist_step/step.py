@@ -68,6 +68,7 @@ class WatchlistStep(GenericStep):
             % str_values
         )
         res = self.users_db_connection.session.execute(query).fetchall()
+        self.logger.info(f"matches: {res}")
         return res
 
     def insert_matches(self, matches: List[Tuple]):
